@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- color for finding bugs in colorization -->
+    <color name="magenta">#ff00ff</color>>
+</resources>

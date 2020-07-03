@@ -3,5 +3,8 @@ enableFeaturePreview("GRADLE_METADATA")
 rootProject.name = "Jovvi"
 
 include(
-    "app"
+    "app",
+
+    ":common-ui",
+    ":common-navigation"
 )

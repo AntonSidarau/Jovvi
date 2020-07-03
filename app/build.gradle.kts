@@ -13,6 +13,10 @@ android {
         versionName = "1.0"
     }
 
+    sourceSets {
+        getByName("main").java.srcDirs("src/main/kotlin")
+    }
+
     signingConfigs {
         val release by creating {
 
@@ -36,6 +40,9 @@ android {
 }
 
 dependencies {
+    addProject(":common-navigation")
+    addProject(":common-ui")
+
     tests()
 }
 

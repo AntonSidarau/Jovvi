@@ -1,5 +1,6 @@
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.DependencyHandlerScope
+import org.gradle.kotlin.dsl.project
 import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 private const val IMPLEMENTATION = "implementation"
@@ -7,6 +8,10 @@ private const val TEST_IMPLEMENTATION = "testImplementation"
 
 fun DependencyHandlerScope.implementation(dependency: LibraryDependency) {
     add(IMPLEMENTATION, dependency.toString())
+}
+
+fun DependencyHandler.addProject(name: String) {
+    add(IMPLEMENTATION, project(name))
 }
 
 fun DependencyHandler.tests() {

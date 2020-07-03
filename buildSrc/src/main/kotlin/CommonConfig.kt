@@ -10,9 +10,16 @@ const val TARGET_SDK = 29
 const val COMPILE_SDK = 29
 
 fun Project.androidLibrary() {
+    plugins.apply("com.android.library")
+    plugins.apply("kotlin-android")
+
     androidLibrary {
         setUpAndroidSdkVersions()
         setUpAndroidConfiguration(this@androidLibrary)
+
+        sourceSets {
+            getByName("main").java.srcDirs("src/main/kotlin")
+        }
     }
 }
 

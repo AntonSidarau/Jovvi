@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- MaterialButton styles -->
+    <style name="Widget.Jovvi.Button" parent="Widget.MaterialComponents.Button" />
+
+    <style name="Widget.Jovvi.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton" />
+
+    <!-- EditText styles-->
+    <style name="Widget.Jovvi.EditText" parent="Widget.AppCompat.EditText" />
+
+    <style name="Widget.Jovvi.TextInputLayout.Outlined" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense" />
+
+    <style name="ThemeOverlay.Jovvi.TextInputEditText.OutlinedBox.Dense" parent="ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox.Dense" />
+
+    <style name="Widget.Jovvi.TextInputEditText.OutlinedBox.Dense" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense" />
+
+    <!-- Toolbar styles -->
+    <style name="Widget.Jovvi.Toolbar" parent="Widget.MaterialComponents.Toolbar" />
+
+    <style name="Widget.Jovvi.Toolbar.NavigationIcon" parent="Widget.AppCompat.Toolbar.Button.Navigation" />
+
+    <!-- Chip styles-->
+    <style name="Widget.Jovvi.Chip" parent="Widget.MaterialComponents.Chip.Action" />
+
+    <!-- Dialog styles -->
+    <style name="ThemeOverlay.Jovvi.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.Light.BottomSheetDialog" />
+
+    <style name="ThemeOverlay.Jovvi.Dialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert" />
+
+    <style name="Widget.Jovvi.BottomSheet.Modal" parent="Widget.MaterialComponents.BottomSheet.Modal" />
+</resources>

@@ -13,6 +13,37 @@ object Dependencies {
         )
     }
 
+    object AndroidX {
+
+        object AppCompat : dep(name = "androidx.appcompat:appcompat", version = Versions.supportLib)
+
+        object Material : dep(
+            name = "com.google.android.material:material", version = Versions.material
+        )
+
+        object RecyclerView : dep(
+            name = "androidx.recyclerview:recyclerview", version = Versions.recyclerView
+        )
+
+        object ConstraintLayout : dep(
+            name = "androidx.constraintlayout:constraintlayout", version = Versions.constraintLayout
+        )
+
+        object KtxCore : dep(name = "androidx.core:core-ktx", version = Versions.ktx)
+
+        object LifecycleCommon : dep(
+            name = "androidx.lifecycle:lifecycle-common-java8", version = Versions.lifecycle
+        )
+    }
+
+    object Ui {
+
+        object AdapterDelegates : dep(
+            name = "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-layoutcontainer",
+            version = Versions.adapterDelegates
+        )
+    }
+
     object Utils {
 
         object Kotlin : dep(name = "org.jetbrains.kotlin:kotlin-stdlib", version = Versions.kotlin)
