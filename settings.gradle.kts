@@ -5,6 +5,14 @@ rootProject.name = "Jovvi"
 include(
     "app",
 
+    ":common",
+    ":common-mpp",
+    ":common-navigation",
     ":common-ui",
-    ":common-navigation"
+
+    ":business-category",
+    ":business-topics",
+
+    ":feature-category",
+    ":feature-topics"
 )

@@ -1,10 +1,11 @@
 androidLibrary()
 
 dependencies {
-    implementation(Dependencies.AndroidX.AppCompat)
-    implementation(Dependencies.AndroidX.Material)
-    implementation(Dependencies.AndroidX.KtxCore)
-    implementation(Dependencies.AndroidX.LifecycleCommon)
+
+    addProject(":common-navigation") //TODO remove
+
+    androidX()
+    androidUi()
 
     implementation(Dependencies.Ui.AdapterDelegates)
 }

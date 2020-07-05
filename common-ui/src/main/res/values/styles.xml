@@ -4,6 +4,15 @@
     <!-- MaterialButton styles -->
     <style name="Widget.Jovvi.Button" parent="Widget.MaterialComponents.Button" />
 
+    <style name="Widget.Jovvi.Button.Icon">
+        <item name="android:minWidth">0dp</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="shapeAppearanceOverlay">?shapeAppearanceLargeComponent</item>
+    </style>
+
     <style name="Widget.Jovvi.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton" />
 
     <!-- EditText styles-->
@@ -29,4 +38,7 @@
     <style name="ThemeOverlay.Jovvi.Dialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert" />
 
     <style name="Widget.Jovvi.BottomSheet.Modal" parent="Widget.MaterialComponents.BottomSheet.Modal" />
+
+    <!-- Custom View Styles -->
+    <style name="CategoryView" />
 </resources>

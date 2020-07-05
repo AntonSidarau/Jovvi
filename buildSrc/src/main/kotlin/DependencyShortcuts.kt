@@ -14,6 +14,24 @@ fun DependencyHandler.addProject(name: String) {
     add(IMPLEMENTATION, project(name))
 }
 
+fun KotlinDependencyHandler.addProject(name: String) {
+    implementation(project(name))
+}
+
+fun DependencyHandler.androidX() {
+    add(IMPLEMENTATION, Dependencies.AndroidX.AppCompat)
+    add(IMPLEMENTATION, Dependencies.AndroidX.Material)
+    add(IMPLEMENTATION, Dependencies.AndroidX.KtxCore)
+    add(IMPLEMENTATION, Dependencies.AndroidX.LifecycleCommon)
+    add(IMPLEMENTATION, Dependencies.AndroidX.Fragment)
+    add(IMPLEMENTATION, Dependencies.AndroidX.FragmentKtx)
+}
+
+fun DependencyHandler.androidUi() {
+    add(IMPLEMENTATION, Dependencies.AndroidX.RecyclerView)
+    add(IMPLEMENTATION, Dependencies.AndroidX.ConstraintLayout)
+}
+
 fun DependencyHandler.tests() {
     add(TEST_IMPLEMENTATION, Dependencies.Test.Mockk)
     add(TEST_IMPLEMENTATION, Dependencies.Test.AssertJ)

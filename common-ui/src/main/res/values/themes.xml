@@ -2,6 +2,33 @@
 <resources>
 
     <style name="Base.Theme.Jovvi" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- base colors -->
+        <item name="colorPrimary">@color/lynch</item>
+        <item name="colorPrimaryVariant">@color/magenta</item>
+        <item name="colorSecondary">@color/magenta</item>
+        <item name="colorSecondaryVariant">@color/magenta</item>
+        <item name="colorError">@color/magenta</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+
+        <!-- "on" colors -->
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnSurface">@color/dove_gray</item>
+        <item name="colorOnBackground">@color/dove_gray</item>
+        <item name="colorOnError">@color/white</item>
+
+        <!-- legacy appcompat colors-->
+        <item name="colorPrimaryDark">@color/magenta</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
+        <item name="colorControlNormal">?attr/colorOnSurface</item>
+        <item name="android:textColorPrimary">?attr/colorOnSurface</item>
+        <item name="android:textColorSecondary">?attr/colorOnSurface</item>
+
+        <!-- platform colors-->
+        <item name="android:windowBackground">?android:colorBackground</item>
+        <item name="android:statusBarColor">@color/black_10</item>
+        <item name="android:navigationBarColor">@color/black_10</item>
 
         <!-- shapes -->
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Jovvi.SmallComponent
@@ -37,10 +64,23 @@
         </item>
         <item name="bottomSheetStyle">@style/Widget.Jovvi.BottomSheet.Modal</item>
 
-        <!-- dialog style -->
+        <!-- dialog styles -->
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.Jovvi.BottomSheetDialog</item>
+
+        <!-- custom view styles -->
+        <item name="categoryViewStyle">@style/CategoryView</item>
     </style>
 
     <style name="Theme.Jovvi" parent="Base.Theme.Jovvi" />
+
+    <style name="ThemeOverlay.Jovvi.Colored" parent="ThemeOverlay.MaterialComponents">
+        <!-- "on" colors -->
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnBackground">@color/white</item>
+
+        <!-- legacy appcompat colors-->
+        <item name="colorControlActivated">@color/white_30</item>
+    </style>
+
 
 </resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/topics_container"
+    android:layout_width="160dp"
+    android:layout_height="160dp"
+    android:layout_margin="10dp"
+    android:elevation="6dp">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:singleLine="false"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        tools:text="Animals" />
+</FrameLayout>

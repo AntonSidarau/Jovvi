@@ -17,6 +17,10 @@ object Dependencies {
 
         object AppCompat : dep(name = "androidx.appcompat:appcompat", version = Versions.supportLib)
 
+        object Annotation : dep(
+            name = "androidx.annotation:annotation", version = Versions.androidAnnotation
+        )
+
         object Material : dep(
             name = "com.google.android.material:material", version = Versions.material
         )
@@ -33,6 +37,12 @@ object Dependencies {
 
         object LifecycleCommon : dep(
             name = "androidx.lifecycle:lifecycle-common-java8", version = Versions.lifecycle
+        )
+
+        object Fragment : dep(name = "androidx.fragment:fragment", version = Versions.fragment)
+
+        object FragmentKtx : dep(
+            name = "androidx.fragment:fragment-ktx", version = Versions.fragment
         )
     }
 

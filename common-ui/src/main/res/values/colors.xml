@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="white">#ffffff</color>
+    <color name="white_30">#4dffffff</color>
+
+    <color name="black">#000000</color>
+    <color name="black_10">#1a000000</color>
+
+    <color name="dove_gray">#707070</color>
+
+    <color name="lynch">#607d8b</color>
+
+    <color name="malibu">#4adafe</color>
+    <color name="anakiwa">#7ae6fe</color>
+
     <!-- color for finding bugs in colorization -->
     <color name="magenta">#ff00ff</color>>
 </resources>

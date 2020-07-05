@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="ShapeAppearance.Jovvi.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent" />
+    <style name="ShapeAppearance.Jovvi.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">@dimen/corner_small_size</item>
+    </style>
 
-    <style name="ShapeAppearance.Jovvi.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent" />
+    <style name="ShapeAppearance.Jovvi.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerSize">@dimen/corner_medium_size</item>
+    </style>
 
-    <style name="ShapeAppearance.Jovvi.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent" />
+    <style name="ShapeAppearance.Jovvi.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerSize">@dimen/corner_large_size</item>
+    </style>
 </resources>

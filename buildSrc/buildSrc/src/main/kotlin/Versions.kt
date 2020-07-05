@@ -3,12 +3,14 @@ object Versions {
     const val kotlin = "1.3.72"
     const val androidGradlePlugin = "4.0.0"
 
-    const val ktx = "1.2.0"
+    const val ktx = "1.3.0"
+    const val androidAnnotation = "1.1.0"
     const val supportLib = "1.1.0"
     const val material = "1.1.0"
     const val recyclerView = "1.1.0"
     const val constraintLayout = "2.0.0-beta4"
     const val lifecycle = "2.2.0"
+    const val fragment = "1.2.5"
 
     const val adapterDelegates = "4.3.0"
 

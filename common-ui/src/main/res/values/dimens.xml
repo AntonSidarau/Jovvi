@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <dimen name="corner_large_size">26dp</dimen>
+    <dimen name="corner_medium_size">12dp</dimen>
+    <dimen name="corner_small_size">8dp</dimen>
+</resources>

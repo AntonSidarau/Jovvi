@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="categoryViewStyle" format="reference" />
+
+    <declare-styleable name="CategoryView">
+        <attr name="backgroundStartColor" format="color|reference" />
+        <attr name="backgroundEndColor" format="color|reference" />
+        <attr name="pattern">
+            <enum name="circle" value="0" />
+            <enum name="convex_line" value="1" />
+            <enum name="rhombus" value="2" />
+        </attr>
+    </declare-styleable>
+</resources>

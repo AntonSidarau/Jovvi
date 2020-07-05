@@ -40,8 +40,18 @@ android {
 }
 
 dependencies {
+    addProject(":common")
+    addProject(":common-mpp")
     addProject(":common-navigation")
     addProject(":common-ui")
+
+    addProject(":business-category")
+    addProject(":business-topics")
+
+    addProject(":feature-category")
+    addProject(":feature-topics")
+
+    androidX()
 
     tests()
 }
