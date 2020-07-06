@@ -14,5 +14,6 @@ include(
     ":business-topics",
 
     ":feature-category",
+    ":feature-question",
     ":feature-topics"
 )

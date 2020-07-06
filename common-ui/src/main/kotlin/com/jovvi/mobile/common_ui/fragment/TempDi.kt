@@ -11,6 +11,8 @@ interface TempDi {
     fun initNavigator(activity: AppCompatActivity): Navigator
 
     val categoryNavigationProvider: NavigationProvider
+
+    val topicsNavigationProvider: NavigationProvider
 }
 
 object Injector {
@@ -28,6 +30,8 @@ object Injector {
     val navigator: Navigator get() = tempDi.navigator
 
     val categoryNavigationProvider: NavigationProvider get() = tempDi.categoryNavigationProvider
+
+    val topicsNavigationProvider: NavigationProvider get() = tempDi.topicsNavigationProvider
 }
 
 interface NavigationProvider

@@ -32,18 +32,20 @@ class CategoryView @JvmOverloads constructor(
     init {
         var startColor: Int = context.getColorInt(R.color.malibu)
         var endColor: Int = context.getColorInt(R.color.anakiwa)
+        var cornerRadius: Float = context.resources.getDimension(R.dimen.corner_large_size)
 
         context.withStyledAttributes(attrs, R.styleable.CategoryView) {
             startColor = getColor(R.styleable.CategoryView_backgroundStartColor, startColor)
             endColor = getColor(R.styleable.CategoryView_backgroundEndColor, endColor)
             patternType = getInt(R.styleable.CategoryView_pattern, patternType)
+            cornerRadius = getDimension(R.styleable.CategoryView_cornerRadius, cornerRadius)
         }
 
         gradientDrawable = GradientDrawable(
             GradientDrawable.Orientation.BL_TR, intArrayOf(startColor, endColor)
         ).apply {
             shape = RECTANGLE
-            cornerRadius = context.resources.getDimension(R.dimen.corner_large_size)
+            this.cornerRadius = cornerRadius
         }
 
         val rippleColor = context.getThemeColor(android.R.attr.colorControlActivated)

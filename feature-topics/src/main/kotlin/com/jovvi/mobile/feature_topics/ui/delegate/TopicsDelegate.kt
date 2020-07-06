@@ -6,6 +6,7 @@ import android.graphics.drawable.GradientDrawable.Orientation
 import android.graphics.drawable.GradientDrawable.RECTANGLE
 import android.graphics.drawable.InsetDrawable
 import android.graphics.drawable.LayerDrawable
+import android.graphics.drawable.RippleDrawable
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -13,13 +14,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
 import com.jovvi.mobile.business_topics.model.Topic
 import com.jovvi.mobile.common_ui.ext.dpToPx
+import com.jovvi.mobile.common_ui.ext.getThemeColor
 import com.jovvi.mobile.common_ui.view_holder.InflateViewHolder
 import com.jovvi.mobile.feature_topics.R
 
-class TopicsDelegate : AdapterDelegate<List<Any>>() {
+class TopicsDelegate(
+    private val onItemClicked: (Topic) -> Unit
+) : AdapterDelegate<List<Any>>() {
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
-        return ViewHolder(parent)
+        return ViewHolder(parent, onItemClicked)
     }
 
     override fun isForViewType(items: List<Any>, position: Int): Boolean {
@@ -39,12 +43,14 @@ class TopicsDelegate : AdapterDelegate<List<Any>>() {
     }
 
     private class ViewHolder(
-        parent: ViewGroup
+        parent: ViewGroup,
+        private val onItemClicked: (Topic) -> Unit
     ) : InflateViewHolder(parent, R.layout.item_topics) {
 
         private val strokeDrawable: GradientDrawable
-
         private val titleTextView: TextView = itemView.findViewById(R.id.tv_title)
+
+        private lateinit var topic: Topic
 
         init {
             val container: FrameLayout = itemView.findViewById(R.id.topics_container)
@@ -64,12 +70,18 @@ class TopicsDelegate : AdapterDelegate<List<Any>>() {
                 color = ColorStateList.valueOf(getColor(R.color.white))
             }
 
-            container.background = LayerDrawable(
-                arrayOf(strokeDrawable, InsetDrawable(fillDrawable, padding))
+            container.background = RippleDrawable(
+                ColorStateList.valueOf(itemView.getThemeColor(android.R.attr.colorControlActivated)),
+                LayerDrawable(arrayOf(strokeDrawable, InsetDrawable(fillDrawable, padding))),
+                null
             )
+
+            itemView.setOnClickListener { onItemClicked(topic) }
         }
 
         fun bind(topic: Topic) {
+            this.topic = topic
+
             strokeDrawable.colors = intArrayOf(topic.colorStart.argb, topic.colorEnd.argb)
             titleTextView.text = topic.name
         }

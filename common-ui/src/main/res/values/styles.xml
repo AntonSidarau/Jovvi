@@ -25,7 +25,11 @@
     <style name="Widget.Jovvi.TextInputEditText.OutlinedBox.Dense" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense" />
 
     <!-- Toolbar styles -->
-    <style name="Widget.Jovvi.Toolbar" parent="Widget.MaterialComponents.Toolbar" />
+    <style name="Widget.Jovvi.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="titleTextAppearance">?attr/textAppearanceHeadline6</item>
+        <item name="titleTextColor">?attr/colorOnBackground</item>
+    </style>
 
     <style name="Widget.Jovvi.Toolbar.NavigationIcon" parent="Widget.AppCompat.Toolbar.Button.Navigation" />
 

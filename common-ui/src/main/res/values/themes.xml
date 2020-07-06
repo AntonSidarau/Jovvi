@@ -20,7 +20,7 @@
 
         <!-- legacy appcompat colors-->
         <item name="colorPrimaryDark">@color/magenta</item>
-        <item name="colorControlActivated">?attr/colorPrimary</item>
+        <item name="colorControlActivated">@color/black_10</item>
         <item name="colorControlNormal">?attr/colorOnSurface</item>
         <item name="android:textColorPrimary">?attr/colorOnSurface</item>
         <item name="android:textColorSecondary">?attr/colorOnSurface</item>

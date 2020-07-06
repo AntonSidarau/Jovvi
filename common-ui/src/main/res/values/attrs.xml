@@ -5,6 +5,7 @@
     <declare-styleable name="CategoryView">
         <attr name="backgroundStartColor" format="color|reference" />
         <attr name="backgroundEndColor" format="color|reference" />
+        <attr name="cornerRadius" format="dimension|reference" />
         <attr name="pattern">
             <enum name="circle" value="0" />
             <enum name="convex_line" value="1" />

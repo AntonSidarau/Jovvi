@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jovvi.mobile.business_category.model.Category
 import com.jovvi.mobile.common_mpp.Color
+import com.jovvi.mobile.common_navigation.exit
 import com.jovvi.mobile.common_navigation.forwardTo
 import com.jovvi.mobile.common_ui.adapter.DefaultDelegatedAdapter
 import com.jovvi.mobile.common_ui.ext.addSystemBottomPadding
@@ -26,6 +27,10 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi(view)
         bindViewActions()
+    }
+
+    override fun onBackPressed() {
+        Injector.navigator.exit()
     }
 
     private fun initUi(view: View) {
