@@ -49,6 +49,7 @@ dependencies {
     addProject(":business-topics")
 
     addProject(":feature-category")
+    addProject(":feature-hot-question")
     addProject(":feature-question")
     addProject(":feature-topics")
 

@@ -44,6 +44,10 @@ object Dependencies {
         object FragmentKtx : dep(
             name = "androidx.fragment:fragment-ktx", version = Versions.fragment
         )
+
+        object ViewPager : dep(
+            name = "androidx.viewpager2:viewpager2", version = Versions.viewPager
+        )
     }
 
     object Ui {

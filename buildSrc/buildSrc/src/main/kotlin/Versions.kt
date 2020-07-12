@@ -11,6 +11,7 @@ object Versions {
     const val constraintLayout = "2.0.0-beta4"
     const val lifecycle = "2.2.0"
     const val fragment = "1.2.5"
+    const val viewPager = "1.0.0"
 
     const val adapterDelegates = "4.3.0"
 

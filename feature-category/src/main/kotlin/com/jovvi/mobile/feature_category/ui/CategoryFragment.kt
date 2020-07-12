@@ -2,6 +2,7 @@ package com.jovvi.mobile.feature_category.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jovvi.mobile.business_category.model.Category
@@ -26,7 +27,7 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi(view)
-        bindViewActions()
+        bindViewActions(view)
     }
 
     override fun onBackPressed() {
@@ -107,8 +108,17 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
         )
     }
 
-    private fun bindViewActions() {
+    private fun bindViewActions(view: View) {
+        val btnHotQuestion: Button = view.findViewById(R.id.btn_hot)
+        val btnFavoriteQuestion: Button = view.findViewById(R.id.btn_favorite)
+        val navProvider = Injector.categoryNavigationProvider as CategoryNavigationProvider
 
+        btnHotQuestion.setOnClickListener {
+            Injector.navigator.forwardTo(navProvider.hotQuestionScreen())
+        }
+        btnFavoriteQuestion.setOnClickListener {
+            Injector.navigator.forwardTo(navProvider.favoriteQuestionsScreen())
+        }
     }
 
     private fun onCategoryClicked(category: Category) {

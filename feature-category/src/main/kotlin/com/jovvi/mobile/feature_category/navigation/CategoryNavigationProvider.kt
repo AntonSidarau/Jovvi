@@ -7,4 +7,8 @@ import com.jovvi.mobile.common_ui.fragment.NavigationProvider
 interface CategoryNavigationProvider : NavigationProvider {
 
     fun topicsScreen(category: Category): Screen
+
+    fun hotQuestionScreen(): Screen
+
+    fun favoriteQuestionsScreen(): Screen
 }
