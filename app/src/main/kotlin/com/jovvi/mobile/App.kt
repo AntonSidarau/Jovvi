@@ -14,10 +14,7 @@ import com.jovvi.mobile.common_ui.fragment.NavigationProvider
 import com.jovvi.mobile.common_ui.fragment.TempDi
 import com.jovvi.mobile.feature_category.navigation.CategoryNavigationProvider
 import com.jovvi.mobile.feature_topics.navigation.TopicsNavigationProvider
-import com.jovvi.mobile.navigation.FavoriteQuestionScreen
-import com.jovvi.mobile.navigation.HotQuestionScreen
-import com.jovvi.mobile.navigation.QuestionScreen
-import com.jovvi.mobile.navigation.TopicsScreen
+import com.jovvi.mobile.navigation.*
 
 class App : Application() {
 
@@ -49,6 +46,8 @@ class App : Application() {
                         )
                         return FavoriteQuestionScreen(topic)
                     }
+
+                    override fun aboutUsScreen(): Screen = AboutUsScreen
                 }
             }
 

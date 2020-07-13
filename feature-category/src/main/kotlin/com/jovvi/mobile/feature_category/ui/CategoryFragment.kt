@@ -3,6 +3,7 @@ package com.jovvi.mobile.feature_category.ui
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jovvi.mobile.business_category.model.Category
@@ -112,12 +113,16 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
         val btnHotQuestion: Button = view.findViewById(R.id.btn_hot)
         val btnFavoriteQuestion: Button = view.findViewById(R.id.btn_favorite)
         val navProvider = Injector.categoryNavigationProvider as CategoryNavigationProvider
+        val ivMore: ImageView = view.findViewById(R.id.iv_more)
 
         btnHotQuestion.setOnClickListener {
             Injector.navigator.forwardTo(navProvider.hotQuestionScreen())
         }
         btnFavoriteQuestion.setOnClickListener {
             Injector.navigator.forwardTo(navProvider.favoriteQuestionsScreen())
+        }
+        ivMore.setOnClickListener {
+            Injector.navigator.forwardTo(navProvider.aboutUsScreen())
         }
     }
 

@@ -11,4 +11,6 @@ interface CategoryNavigationProvider : NavigationProvider {
     fun hotQuestionScreen(): Screen
 
     fun favoriteQuestionsScreen(): Screen
+
+    fun aboutUsScreen(): Screen
 }

@@ -13,6 +13,7 @@ include(
     ":business-category",
     ":business-topics",
 
+    ":feature-about-us",
     ":feature-category",
     ":feature-hot-question",
     ":feature-question",
