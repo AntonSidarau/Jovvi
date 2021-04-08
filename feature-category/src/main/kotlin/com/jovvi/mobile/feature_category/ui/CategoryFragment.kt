@@ -8,23 +8,31 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.jovvi.mobile.business_category.model.Category
 import com.jovvi.mobile.common_mpp.Color
+import com.jovvi.mobile.common_navigation.Navigator
 import com.jovvi.mobile.common_navigation.exit
 import com.jovvi.mobile.common_navigation.forwardTo
 import com.jovvi.mobile.common_ui.adapter.DefaultDelegatedAdapter
 import com.jovvi.mobile.common_ui.ext.addSystemBottomPadding
 import com.jovvi.mobile.common_ui.ext.addSystemTopMargins
 import com.jovvi.mobile.common_ui.fragment.BaseFragment
-import com.jovvi.mobile.common_ui.fragment.Injector
 import com.jovvi.mobile.feature_category.R
 import com.jovvi.mobile.feature_category.navigation.CategoryNavigationProvider
 import com.jovvi.mobile.feature_category.ui.delegate.CategoryDelegate
+import org.kodein.di.DI
+import org.kodein.di.DIAware
+import org.kodein.di.android.x.closestDI
+import org.kodein.di.instance
 
-class CategoryFragment : BaseFragment(R.layout.fragment_category) {
+class CategoryFragment : BaseFragment(R.layout.fragment_category), DIAware {
 
     private val adapter = DefaultDelegatedAdapter(CategoryDelegate(::onCategoryClicked))
+    private val navigator: Navigator by instance()
+    private val navigationProvider: CategoryNavigationProvider by instance()
 
     private lateinit var tvTitle: TextView
     private lateinit var recyclerCategory: RecyclerView
+
+    override val di: DI by closestDI()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi(view)
@@ -32,7 +40,7 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
     }
 
     override fun onBackPressed() {
-        Injector.navigator.exit()
+        navigator.exit()
     }
 
     private fun initUi(view: View) {
@@ -112,22 +120,20 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
     private fun bindViewActions(view: View) {
         val btnHotQuestion: Button = view.findViewById(R.id.btn_hot)
         val btnFavoriteQuestion: Button = view.findViewById(R.id.btn_favorite)
-        val navProvider = Injector.categoryNavigationProvider as CategoryNavigationProvider
         val ivMore: ImageView = view.findViewById(R.id.iv_more)
 
         btnHotQuestion.setOnClickListener {
-            Injector.navigator.forwardTo(navProvider.hotQuestionScreen())
+            navigator.forwardTo(navigationProvider.hotQuestionScreen())
         }
         btnFavoriteQuestion.setOnClickListener {
-            Injector.navigator.forwardTo(navProvider.favoriteQuestionsScreen())
+            navigator.forwardTo(navigationProvider.favoriteQuestionsScreen())
         }
         ivMore.setOnClickListener {
-            Injector.navigator.forwardTo(navProvider.aboutUsScreen())
+            navigator.forwardTo(navigationProvider.aboutUsScreen())
         }
     }
 
     private fun onCategoryClicked(category: Category) {
-        val navProvider = Injector.categoryNavigationProvider as CategoryNavigationProvider
-        Injector.navigator.forwardTo(navProvider.topicsScreen(category))
+        navigator.forwardTo(navigationProvider.topicsScreen(category))
     }
 }

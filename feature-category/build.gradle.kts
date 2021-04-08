@@ -7,8 +7,8 @@ dependencies {
 
     addProject(":business-category")
 
-    androidX()
     androidUi()
+    kodein()
 
     implementation(Dependencies.Ui.AdapterDelegates)
 }

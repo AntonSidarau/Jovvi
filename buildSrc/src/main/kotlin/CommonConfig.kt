@@ -1,6 +1,7 @@
 import com.android.build.gradle.BaseExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -19,6 +20,27 @@ fun Project.androidLibrary() {
 
         sourceSets {
             getByName("main").java.srcDirs("src/main/kotlin")
+        }
+    }
+}
+
+fun Project.androidLibraryMultiplatform() {
+    androidLibrary {
+        setUpAndroidSdkVersions()
+        setUpAndroidConfiguration(this@androidLibraryMultiplatform)
+
+        sourceSets {
+            getByName("main").java.srcDirs("src/main/kotlin")
+        }
+    }
+}
+
+inline fun Project.androidDependencies(
+    crossinline block: DependencyHandlerScope.() -> Unit
+) {
+    androidLibrary {
+        dependencies {
+            block()
         }
     }
 }

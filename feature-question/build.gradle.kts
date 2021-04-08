@@ -7,8 +7,8 @@ dependencies {
 
     addProject(":business-topics")
 
-    androidX()
     androidUi()
+    kodein()
 
     implementation(Dependencies.AndroidX.ViewPager)
 

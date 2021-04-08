@@ -4,12 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 
-interface ActivityCallbacks : Application.ActivityLifecycleCallbacks {
-
-    fun onActivityResultReceived(receiver: Activity, result: ActivityResult) = Unit
-
-    fun onRequestPermissionsResultReceived(activity: Activity, result: RequestPermissionResult)
-}
+interface ActivityCallbacks : Application.ActivityLifecycleCallbacks
 
 open class ActivityCallbacksAdapter : ActivityCallbacks {
 
@@ -26,13 +21,6 @@ open class ActivityCallbacksAdapter : ActivityCallbacks {
     override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle) = Unit
 
     override fun onActivityDestroyed(activity: Activity) = Unit
-
-    override fun onActivityResultReceived(receiver: Activity, result: ActivityResult) = Unit
-
-    override fun onRequestPermissionsResultReceived(
-        activity: Activity,
-        result: RequestPermissionResult
-    ) = Unit
 }
 
 class CompositeActivityCallbacksListener : ActivityCallbacksAdapter() {
@@ -64,17 +52,6 @@ class CompositeActivityCallbacksListener : ActivityCallbacksAdapter() {
 
     override fun onActivityDestroyed(activity: Activity) {
         listeners.forEach { it.onActivityDestroyed(activity) }
-    }
-
-    override fun onActivityResultReceived(receiver: Activity, result: ActivityResult) {
-        listeners.forEach { it.onActivityResultReceived(receiver, result) }
-    }
-
-    override fun onRequestPermissionsResultReceived(
-        activity: Activity,
-        result: RequestPermissionResult
-    ) {
-        listeners.forEach { it.onRequestPermissionsResultReceived(activity, result) }
     }
 
     fun addCallbacksListener(listener: ActivityCallbacks) {

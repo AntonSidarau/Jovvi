@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jovvi.mobile.business_category.model.Category
 import com.jovvi.mobile.business_topics.model.Topic
+import com.jovvi.mobile.common_navigation.Navigator
 import com.jovvi.mobile.common_navigation.exit
 import com.jovvi.mobile.common_navigation.forwardTo
 import com.jovvi.mobile.common_ui.adapter.DefaultDelegatedAdapter
@@ -16,13 +17,16 @@ import com.jovvi.mobile.common_ui.ext.addSystemBottomPadding
 import com.jovvi.mobile.common_ui.ext.addSystemTopPadding
 import com.jovvi.mobile.common_ui.ext.getSerializableAs
 import com.jovvi.mobile.common_ui.fragment.BaseFragment
-import com.jovvi.mobile.common_ui.fragment.Injector
 import com.jovvi.mobile.common_ui.widget.CategoryView
 import com.jovvi.mobile.feature_topics.R
 import com.jovvi.mobile.feature_topics.navigation.TopicsNavigationProvider
 import com.jovvi.mobile.feature_topics.ui.delegate.TopicsDelegate
+import org.kodein.di.DI
+import org.kodein.di.DIAware
+import org.kodein.di.android.x.closestDI
+import org.kodein.di.instance
 
-class TopicsFragment : BaseFragment(R.layout.fragment_topics) {
+class TopicsFragment : BaseFragment(R.layout.fragment_topics), DIAware {
 
     companion object {
 
@@ -36,13 +40,16 @@ class TopicsFragment : BaseFragment(R.layout.fragment_topics) {
     }
 
     private val adapter = DefaultDelegatedAdapter(TopicsDelegate(::onTopicClicked))
+    private val navigator: Navigator by instance()
+
+    override val di: DI by closestDI()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi(view)
     }
 
     override fun onBackPressed() {
-        Injector.navigator.exit()
+        navigator.exit()
     }
 
     private fun initUi(view: View) {
@@ -57,7 +64,7 @@ class TopicsFragment : BaseFragment(R.layout.fragment_topics) {
         recyclerTopics.addSystemBottomPadding()
         categoryView.addSystemTopPadding()
 
-        ivBack.setOnClickListener { Injector.navigator.exit() }
+        ivBack.setOnClickListener { navigator.exit() }
 
         recyclerTopics.adapter = adapter
         recyclerTopics.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -88,7 +95,7 @@ class TopicsFragment : BaseFragment(R.layout.fragment_topics) {
     }
 
     private fun onTopicClicked(topic: Topic) {
-        val navigationProvider = Injector.topicsNavigationProvider as TopicsNavigationProvider
-        Injector.navigator.forwardTo(navigationProvider.questionScreen(topic))
+        val navigationProvider: TopicsNavigationProvider by instance()
+        navigator.forwardTo(navigationProvider.questionScreen(topic))
     }
 }

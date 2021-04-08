@@ -2,10 +2,10 @@ import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 fun Project.multiPlatformLibrary() {
-    plugins.apply("kotlin-multiplatform")
     plugins.apply("com.android.library")
 
     androidLibrary {
@@ -13,13 +13,8 @@ fun Project.multiPlatformLibrary() {
     }
 
     kotlinMultiPlatform {
-        android {
-            publishLibraryVariants("release", "debug")
-        }
-
-        val ideaActive = System.getProperty("idea.active") == "true"
-        iosX64(if (ideaActive) "ios" else "iosX64")
-        iosArm64()
+        android()
+        ios()
 
         sourceSets {
             commonMain {
@@ -53,10 +48,21 @@ fun Project.multiPlatformLibrary() {
             }
 
             iosMain.dependsOn(commonMain)
-            iosArm64Main.dependsOn(iosMain)
         }
     }
 
+}
+
+inline fun KotlinMultiplatformExtension.commonDependencies(
+    crossinline block: KotlinDependencyHandler.() -> Unit
+) {
+    sourceSets {
+        commonMain {
+            dependencies {
+                block()
+            }
+        }
+    }
 }
 
 fun Project.kotlinMultiPlatform(block: KotlinMultiplatformExtension.() -> Unit) {

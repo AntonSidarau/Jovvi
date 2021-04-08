@@ -50,6 +50,24 @@ object Dependencies {
         )
     }
 
+    object Di {
+
+        object Kodein : dep(
+            name = "org.kodein.di:kodein-di",
+            version = Versions.kodein
+        )
+
+        object KodeinAndroidCore : dep(
+            name = "org.kodein.di:kodein-di-framework-android-core",
+            version = Versions.kodein
+        )
+
+        object KodeinAndroidX : dep(
+            name = "org.kodein.di:kodein-di-framework-android-x",
+            version = Versions.kodein
+        )
+    }
+
     object Ui {
 
         object AdapterDelegates : dep(

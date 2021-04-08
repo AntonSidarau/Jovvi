@@ -28,8 +28,15 @@ fun DependencyHandler.androidX() {
 }
 
 fun DependencyHandler.androidUi() {
+    androidX()
     add(IMPLEMENTATION, Dependencies.AndroidX.RecyclerView)
     add(IMPLEMENTATION, Dependencies.AndroidX.ConstraintLayout)
+}
+
+fun DependencyHandler.kodein() {
+    add(IMPLEMENTATION, Dependencies.Di.Kodein)
+    add(IMPLEMENTATION, Dependencies.Di.KodeinAndroidCore)
+    add(IMPLEMENTATION, Dependencies.Di.KodeinAndroidX)
 }
 
 fun DependencyHandler.tests() {

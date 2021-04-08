@@ -55,6 +55,7 @@ dependencies {
     addProject(":feature-topics")
 
     androidX()
+    kodein()
 
     tests()
 }

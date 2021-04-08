@@ -7,20 +7,24 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.appbar.MaterialToolbar
 import com.jovvi.mobile.business_topics.model.Topic
+import com.jovvi.mobile.common_navigation.Navigator
 import com.jovvi.mobile.common_navigation.exit
 import com.jovvi.mobile.common_ui.adapter.DefaultDelegatedAdapter
 import com.jovvi.mobile.common_ui.ext.addSystemBottomPadding
 import com.jovvi.mobile.common_ui.ext.addSystemTopMargins
 import com.jovvi.mobile.common_ui.ext.getSerializableAs
 import com.jovvi.mobile.common_ui.fragment.BaseFragment
-import com.jovvi.mobile.common_ui.fragment.Injector
 import com.jovvi.mobile.feature_question.R
 import com.jovvi.mobile.feature_question.ui.delegate.MarginItemDecoration
 import com.jovvi.mobile.feature_question.ui.delegate.Question
 import com.jovvi.mobile.feature_question.ui.delegate.QuestionDelegate
 import com.jovvi.mobile.feature_question.ui.delegate.QuestionPageTransformer
+import org.kodein.di.DI
+import org.kodein.di.DIAware
+import org.kodein.di.android.x.closestDI
+import org.kodein.di.instance
 
-class QuestionFragment : BaseFragment(R.layout.fragment_question) {
+class QuestionFragment : BaseFragment(R.layout.fragment_question), DIAware {
 
     companion object {
 
@@ -34,13 +38,16 @@ class QuestionFragment : BaseFragment(R.layout.fragment_question) {
     }
 
     private val adapter = DefaultDelegatedAdapter(QuestionDelegate())
+    private val navigator: Navigator by instance()
+
+    override val di: DI by closestDI()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi(view)
     }
 
     override fun onBackPressed() {
-        Injector.navigator.exit()
+        navigator.exit()
     }
 
     private fun initUi(view: View) {
@@ -50,7 +57,7 @@ class QuestionFragment : BaseFragment(R.layout.fragment_question) {
         val topic: Topic = requireArguments().getSerializableAs(ARG_TOPIC)
 
         toolbar.addSystemTopMargins()
-        toolbar.setNavigationOnClickListener { Injector.navigator.exit() }
+        toolbar.setNavigationOnClickListener { navigator.exit() }
         toolbar.title = topic.name
 
         viewPager.addSystemBottomPadding()
