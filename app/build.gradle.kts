@@ -41,6 +41,8 @@ android {
 
 dependencies {
     addProject(":common")
+    addProject(":common-db")
+    addProject(":common-di")
     addProject(":common-mpp")
     addProject(":common-navigation")
     addProject(":common-ui")
@@ -55,7 +57,7 @@ dependencies {
     addProject(":feature-topics")
 
     androidX()
-    kodein()
+    koin()
 
     tests()
 }

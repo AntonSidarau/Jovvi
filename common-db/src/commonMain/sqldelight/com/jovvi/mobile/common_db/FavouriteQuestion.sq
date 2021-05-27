@@ -1,0 +1,15 @@
+CREATE TABLE FavouriteQuestion (
+    id INTEGER PRIMARY KEY,
+    questionId INTEGER NOT NULL,
+    FOREIGN KEY (questionId) REFERENCES Question (id)
+                    ON DELETE CASCADE ON UPDATE NO ACTION
+);
+
+getAllFavouriteQuestions:
+SELECT Question.* FROM Question INNER JOIN FavouriteQuestion ON FavouriteQuestion.questionId = Question.id;
+
+addFavouriteQuestion:
+INSERT INTO FavouriteQuestion(questionId) VALUES (?);
+
+deleteFavouriteQuestionById:
+DELETE FROM FavouriteQuestion WHERE questionId = ?;

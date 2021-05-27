@@ -4,6 +4,7 @@ include(
     "app",
 
     ":common",
+    ":common-db",
     ":common-di",
     ":common-mpp",
     ":common-navigation",

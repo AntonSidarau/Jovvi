@@ -1,27 +1,29 @@
 package com.jovvi.mobile.di
 
-import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 import com.jovvi.mobile.R
+import com.jovvi.mobile.common_di.Scopes
 import com.jovvi.mobile.common_navigation.DefaultNavigator
 import com.jovvi.mobile.common_navigation.Navigator
+import com.jovvi.mobile.common_navigation.Router
 import com.jovvi.mobile.feature_category.navigation.CategoryNavigationProvider
 import com.jovvi.mobile.feature_topics.navigation.TopicsNavigationProvider
 import com.jovvi.mobile.navigation.provider.DefaultCategoryNavigationProvider
 import com.jovvi.mobile.navigation.provider.DefaultTopicsNavigationProvider
-import org.kodein.di.*
-import org.kodein.di.bindings.WeakContextScope
+import com.jovvi.mobile.root.ActivityHolder
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
-fun navigationModule() = DI.Module("NavigationModule") {
+val navigationModule = module {
 
-    bind<Navigator> {
-        scoped(WeakContextScope.of<Activity>()).singleton {
-            DefaultNavigator(context as AppCompatActivity, R.id.root_container)
+    scope(named(Scopes.ACTIVITY)) {
+        factory<Navigator> {
+            val activityHolder: ActivityHolder = get()
+            DefaultNavigator(activityHolder.activity, R.id.root_container)
         }
+
+        scoped { Router() }
     }
 
-    bind<CategoryNavigationProvider> {
-        singleton { DefaultCategoryNavigationProvider(instance()) }
-    }
-    bind<TopicsNavigationProvider> { singleton { DefaultTopicsNavigationProvider() } }
+    factory<CategoryNavigationProvider> { DefaultCategoryNavigationProvider(get()) }
+    factory<TopicsNavigationProvider> { DefaultTopicsNavigationProvider() }
 }

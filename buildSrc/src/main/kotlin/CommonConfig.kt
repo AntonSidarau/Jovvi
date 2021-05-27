@@ -7,8 +7,8 @@ import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 const val MID_SDK = 21
-const val TARGET_SDK = 29
-const val COMPILE_SDK = 29
+const val TARGET_SDK = 30
+const val COMPILE_SDK = 30
 
 fun Project.androidLibrary() {
     plugins.apply("com.android.library")
@@ -17,17 +17,6 @@ fun Project.androidLibrary() {
     androidLibrary {
         setUpAndroidSdkVersions()
         setUpAndroidConfiguration(this@androidLibrary)
-
-        sourceSets {
-            getByName("main").java.srcDirs("src/main/kotlin")
-        }
-    }
-}
-
-fun Project.androidLibraryMultiplatform() {
-    androidLibrary {
-        setUpAndroidSdkVersions()
-        setUpAndroidConfiguration(this@androidLibraryMultiplatform)
 
         sourceSets {
             getByName("main").java.srcDirs("src/main/kotlin")

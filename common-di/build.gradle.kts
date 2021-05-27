@@ -3,10 +3,10 @@ plugins {
 }
 
 multiPlatformLibrary()
-androidLibraryMultiplatform()
 
 androidDependencies {
     androidX()
+    koin()
 }
 
 

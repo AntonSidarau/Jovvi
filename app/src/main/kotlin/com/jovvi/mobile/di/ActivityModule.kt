@@ -1,7 +1,12 @@
 package com.jovvi.mobile.di
 
-import org.kodein.di.DI
+import com.jovvi.mobile.common_di.Scopes
+import com.jovvi.mobile.root.ActivityHolder
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
-fun activityModule() = DI.Module("ActivityModule") {
-
+val activityModule = module {
+    scope(named(Scopes.ACTIVITY)) {
+        scoped { ActivityHolder() }
+    }
 }

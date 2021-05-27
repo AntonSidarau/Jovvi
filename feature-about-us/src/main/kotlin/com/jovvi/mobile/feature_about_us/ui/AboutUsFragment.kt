@@ -5,18 +5,19 @@ import android.view.View
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.MaterialToolbar
-import com.jovvi.mobile.common_navigation.Navigator
-import com.jovvi.mobile.common_navigation.exit
+import com.jovvi.mobile.common_di.Scopes
+import com.jovvi.mobile.common_navigation.Router
 import com.jovvi.mobile.common_ui.ext.addSystemBottomMargins
 import com.jovvi.mobile.common_ui.ext.addSystemTopMargins
+import com.jovvi.mobile.common_ui.ext.lazyMainThread
 import com.jovvi.mobile.common_ui.fragment.BaseFragment
 import com.jovvi.mobile.feature_about_us.R
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.android.x.closestDI
-import org.kodein.di.instance
+import org.koin.android.ext.android.getKoin
+import org.koin.android.ext.android.inject
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.core.scope.Scope
 
-class AboutUsFragment : BaseFragment(R.layout.fragment_about_us), DIAware {
+class AboutUsFragment : BaseFragment(R.layout.fragment_about_us), AndroidScopeComponent {
 
     companion object {
 
@@ -25,16 +26,22 @@ class AboutUsFragment : BaseFragment(R.layout.fragment_about_us), DIAware {
         }
     }
 
-    private val navigator: Navigator by instance()
+    private val router: Router by inject()
 
-    override val di: DI by closestDI()
+    override val scope: Scope by lazyMainThread {
+        getKoin().getScope(Scopes.ACTIVITY)
+        /*createCustomScope(AboutUsScopes.FEATURE).also {
+            it.linkTo(it.getScope(Scopes.ACTIVITY))
+            closeOnDestroy(it)
+        }*/
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         bindViewActions(view)
     }
 
     override fun onBackPressed() {
-        navigator.exit()
+        router.exit()
     }
 
     private fun bindViewActions(view: View) {
@@ -44,8 +51,6 @@ class AboutUsFragment : BaseFragment(R.layout.fragment_about_us), DIAware {
         toolbar.addSystemTopMargins()
         btnShareTwitter.addSystemBottomMargins()
 
-        toolbar.setNavigationOnClickListener {
-            navigator.exit()
-        }
+        toolbar.setNavigationOnClickListener { router.exit() }
     }
 }

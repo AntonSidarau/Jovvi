@@ -55,7 +55,6 @@ class CategoryView @JvmOverloads constructor(
 
     fun applyAppearance(startColor: Int, endColor: Int, pattern: Int) {
         patternType = pattern
-
         gradientDrawable.colors = intArrayOf(startColor, endColor)
     }
 

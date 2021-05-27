@@ -1,0 +1,32 @@
+CREATE TABLE Topic(
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    categoryId INTEGER NOT NULL,
+    FOREIGN KEY (categoryId) REFERENCES Category (id)
+                ON DELETE CASCADE ON UPDATE NO ACTION
+);
+
+INSERT INTO Topic (name, categoryId) VALUES
+    ('Good questions to ask', 1),
+    ('Conversation starters', 1),
+    ('Questions to get to know someone', 1),
+    ('Icebreaker questions', 1),
+    ('Would you rather questions', 1),
+    ('Questions to ask a guy', 1),
+    ('Questions to ask a girl', 1),
+    ('Topics to talk about', 1),
+    ('Fun questions to ask', 1),
+    ('Truth or dare questions', 2),
+    ('Never have I ever questions', 2),
+    ('This or that questions', 2),
+    ('Date ideas', 3),
+    ('First date questions', 3),
+    ('Questions for couples', 3),
+    ('Questions to ask your crush', 3),
+    ('Questions to ask your boyfriend', 3),
+    ('Philosophical questions', 4),
+    ('Deep conversation topics', 4),
+    ('Hypothetical questions', 4);
+
+getTopicsByCategoryId:
+SELECT * FROM Topic WHERE categoryId = ?;

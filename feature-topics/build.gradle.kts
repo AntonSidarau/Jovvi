@@ -1,15 +1,32 @@
-androidLibrary()
+plugins {
+    kotlin("multiplatform")
+}
 
-dependencies {
-    addProject(":common-mpp")
+multiPlatformLibrary()
+
+kotlinMultiPlatform {
+    sourceSets {
+        commonMain {
+            dependencies {
+                mviKotlin()
+                addProject(":common-mpp")
+                addProject(":business-category")
+                addProject(":business-topics")
+
+                implementation(Dependencies.Di.Koin)
+                implementation(Dependencies.Coroutines.Core)
+            }
+        }
+    }
+}
+
+androidDependencies {
     addProject(":common-navigation")
     addProject(":common-ui")
-
-    addProject(":business-category")
-    addProject(":business-topics")
+    addProject(":common-di")
 
     androidUi()
-    kodein()
+    koin()
 
     implementation(Dependencies.Ui.AdapterDelegates)
 }

@@ -14,21 +14,18 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.MaterialToolbar
+import com.jovvi.mobile.common_di.Scopes
 import com.jovvi.mobile.common_mpp.Color
-import com.jovvi.mobile.common_navigation.Navigator
-import com.jovvi.mobile.common_navigation.exit
-import com.jovvi.mobile.common_ui.ext.addSystemBottomMargins
-import com.jovvi.mobile.common_ui.ext.addSystemTopMargins
-import com.jovvi.mobile.common_ui.ext.dpToPx
-import com.jovvi.mobile.common_ui.ext.getColorInt
+import com.jovvi.mobile.common_navigation.Router
+import com.jovvi.mobile.common_ui.ext.*
 import com.jovvi.mobile.common_ui.fragment.BaseFragment
 import com.jovvi.mobile.feature_hot_question.R
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.android.x.closestDI
-import org.kodein.di.instance
+import org.koin.android.ext.android.getKoin
+import org.koin.android.ext.android.inject
+import org.koin.android.scope.AndroidScopeComponent
+import org.koin.core.scope.Scope
 
-class HotQuestionFragment : BaseFragment(R.layout.fragment_host_question), DIAware {
+class HotQuestionFragment : BaseFragment(R.layout.fragment_host_question), AndroidScopeComponent {
 
     companion object {
 
@@ -37,10 +34,16 @@ class HotQuestionFragment : BaseFragment(R.layout.fragment_host_question), DIAwa
         }
     }
 
-    private val navigator: Navigator by instance()
+    private val router: Router by inject()
+
     private lateinit var ivCopy: ImageView
 
-    override val di: DI by closestDI()
+    override val scope: Scope by lazyMainThread {
+        getKoin().getScope(Scopes.ACTIVITY)
+        /*createCustomScope(HotQuestionScopes.FEATURE).also {
+            it.linkTo(it.getScope(Scopes.ACTIVITY))
+        }*/
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initUi(view)
@@ -48,7 +51,7 @@ class HotQuestionFragment : BaseFragment(R.layout.fragment_host_question), DIAwa
     }
 
     override fun onBackPressed() {
-        navigator.exit()
+        router.exit()
     }
 
     private fun initUi(view: View) {
@@ -92,7 +95,7 @@ class HotQuestionFragment : BaseFragment(R.layout.fragment_host_question), DIAwa
         ivCopy.setOnClickListener {
             Toast.makeText(requireContext(), "Copied(no)", Toast.LENGTH_SHORT).show()
         }
-        toolbar.setNavigationOnClickListener { navigator.exit() }
+        toolbar.setNavigationOnClickListener { router.exit() }
         btnShareTwitter.setOnClickListener {
             Toast.makeText(requireContext(), "Share to twitter", Toast.LENGTH_SHORT).show()
         }

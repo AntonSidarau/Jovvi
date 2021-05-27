@@ -13,7 +13,13 @@ object Versions {
     const val fragment = "1.3.2"
     const val viewPager = "1.0.0"
 
-    const val kodein = "7.5.0"
+    const val coroutines = "1.4.2"
+
+    const val koin = "3.0.2"
+
+    const val mviKotlin = "2.0.1"
+
+    const val sqlDelight = "1.4.4"
 
     const val adapterDelegates = "4.3.0"
 

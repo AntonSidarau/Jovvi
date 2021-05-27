@@ -8,7 +8,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:4.1.3")
+    implementation(Dependencies.Plugins.Android)
     implementation(Dependencies.Plugins.Kotlin)
 }
 

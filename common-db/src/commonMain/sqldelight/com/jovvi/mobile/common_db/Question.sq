@@ -1,0 +1,38 @@
+CREATE TABLE Question(
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    topicId INTEGER NOT NULL,
+    FOREIGN KEY (topicId) REFERENCES Category (id)
+                ON DELETE CASCADE ON UPDATE NO ACTION
+);
+
+INSERT INTO Question (name, topicId) VALUES
+    ('What’s the best thing you’ve got going on in your life at the moment?', 1),
+    ('What incredibly common thing have you never done?', 1),
+    ('What has taken you the longest to get good or decent at?', 1),
+    ('What food do you love that a lot of people might find a little odd?', 2),
+    ('If you could start a charity, what would it be for?', 2),
+    ('What was the funniest thing you’ve seen recently online?', 2),
+    ('What are some of your favorite games to play?', 2),
+    ('What takes a lot of time but is totally worth it?', 3),
+    ('What is the most amazing fact you know?', 4),
+    ('What website or app doesn’t exist, but you really wish it did?', 4),
+    ('What’s your favorite type of day? (weather, temp, etc.)', 4),
+    ('What is the most clever or funniest use of advertising you’ve seen?', 4),
+    ('How into self-improvement are you?', 5),
+    ('When someone finds out what you do, or where you are from, what question do they always ask you?', 5),
+    ('Are you more productive at night or in the morning? Do you think it’s possible to change and get used to another schedule?', 5),
+    ('What scene in a movie always gives you goosebumps every time you watch it?', 6),
+    ('What topic could you give a 20-minute presentation on without any preparation?', 6),
+    ('What’s something that a lot of people are missing out on because they don’t know about it?', 6),
+    ('What are some of your guilty pleasures?', 1),
+    ('Who is the most interesting person you’ve met and talked with?', 1),
+    ('What has really taken a toll on you?', 1),
+    ('How did you spend the money from your very first job?', 1),
+    ('What do you wish someone taught you a long time ago?', 1);
+
+getAllQuestionsByTopicId:
+SELECT * FROM Question WHERE topicId = ?;
+
+getQuestionById:
+SELECT * FROM Question WHERE id = ?;

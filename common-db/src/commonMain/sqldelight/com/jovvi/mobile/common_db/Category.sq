@@ -1,0 +1,19 @@
+CREATE TABLE Category (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    description TEXT NOT NULL,
+    startColor TEXT NOT NULL,
+    endColor TEXT NOT NULL
+);
+
+INSERT INTO Category (id, name, description, startColor, endColor) VALUES
+    (1, 'Conversation starters', "Kick off your conversation with these amazing questions. Don't be shy", '#4adafe', '#7ae6fe'),
+    (2, 'Conversation games', 'Play with friends and family at a party or a road trip!', '#bba1ff', '#cfbdff'),
+    (3, 'Dating', 'Ask something your hot date or you life partner. Flirt and make stronger connections!', '#66b8ff', '#91cdff'),
+    (4, 'Thought-Provoking', 'Ask something your hot date or you life partner. Flirt and make stronger connections!', '#fd7b9c', '#fda1ba');
+
+getAllCategories:
+SELECT * FROM Category;
+
+getCategoryById:
+SELECT * FROM Category WHERE id = ?;

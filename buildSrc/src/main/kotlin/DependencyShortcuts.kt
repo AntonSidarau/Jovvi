@@ -33,10 +33,17 @@ fun DependencyHandler.androidUi() {
     add(IMPLEMENTATION, Dependencies.AndroidX.ConstraintLayout)
 }
 
-fun DependencyHandler.kodein() {
-    add(IMPLEMENTATION, Dependencies.Di.Kodein)
-    add(IMPLEMENTATION, Dependencies.Di.KodeinAndroidCore)
-    add(IMPLEMENTATION, Dependencies.Di.KodeinAndroidX)
+fun DependencyHandler.koin() {
+    add(IMPLEMENTATION, Dependencies.Di.Koin)
+    add(IMPLEMENTATION, Dependencies.Di.KoinAndroid)
+}
+
+fun KotlinDependencyHandler.mviKotlin() {
+    implementation(Dependencies.Mvi.MviKotlin)
+    implementation(Dependencies.Mvi.MviKotlinMain)
+    implementation(Dependencies.Mvi.MviKotlinRx)
+    implementation(Dependencies.Mvi.MviKotlinUtils)
+    implementation(Dependencies.Mvi.MviKotlinCoroutines)
 }
 
 fun DependencyHandler.tests() {

@@ -11,6 +11,11 @@ object Dependencies {
         object Kotlin : dep(
             name = "org.jetbrains.kotlin:kotlin-gradle-plugin", version = Versions.kotlin
         )
+
+        object SqlDelight : dep(
+            name = "com.squareup.sqldelight:gradle-plugin",
+            version = Versions.sqlDelight
+        )
     }
 
     object AndroidX {
@@ -50,21 +55,75 @@ object Dependencies {
         )
     }
 
+    object Coroutines {
+
+        object Core : dep(
+            name = "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            version = Versions.coroutines
+        )
+    }
+
+    object Mvi {
+
+        object MviKotlin : dep(
+            name = "com.arkivanov.mvikotlin:mvikotlin",
+            version = Versions.mviKotlin
+        )
+
+        object MviKotlinMain : dep(
+            name = "com.arkivanov.mvikotlin:mvikotlin-main",
+            version = Versions.mviKotlin
+        )
+
+        object MviKotlinRx : dep(
+            name = "com.arkivanov.mvikotlin:rx",
+            version = Versions.mviKotlin
+        )
+
+        object MviKotlinUtils : dep(
+            name = "com.arkivanov.mvikotlin:utils-internal",
+            version = Versions.mviKotlin
+        )
+
+        object MviKotlinCoroutines : dep(
+            name = "com.arkivanov.mvikotlin:mvikotlin-extensions-coroutines",
+            version = Versions.mviKotlin
+        )
+    }
+
     object Di {
 
-        object Kodein : dep(
-            name = "org.kodein.di:kodein-di",
-            version = Versions.kodein
+        object Koin : dep(
+            name = "io.insert-koin:koin-core",
+            version = Versions.koin
         )
 
-        object KodeinAndroidCore : dep(
-            name = "org.kodein.di:kodein-di-framework-android-core",
-            version = Versions.kodein
+        object KoinAndroid : dep(
+            name = "io.insert-koin:koin-android",
+            version = Versions.koin
+        )
+    }
+
+    object Db {
+
+        object SqlDelightCommon : dep(
+            name = "com.squareup.sqldelight:runtime",
+            version = Versions.sqlDelight
         )
 
-        object KodeinAndroidX : dep(
-            name = "org.kodein.di:kodein-di-framework-android-x",
-            version = Versions.kodein
+        object SqlDelightAndroid : dep(
+            name = "com.squareup.sqldelight:android-driver",
+            version = Versions.sqlDelight
+        )
+
+        object SqlDelightIos : dep(
+            name = "com.squareup.sqldelight:native-driver",
+            version = Versions.sqlDelight
+        )
+
+        object SqlDelightCoroutines : dep(
+            name = "com.squareup.sqldelight:coroutines-extensions",
+            version = Versions.sqlDelight
         )
     }
 

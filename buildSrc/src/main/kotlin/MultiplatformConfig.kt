@@ -2,7 +2,6 @@ import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 
 fun Project.multiPlatformLibrary() {
@@ -10,11 +9,23 @@ fun Project.multiPlatformLibrary() {
 
     androidLibrary {
         setUpAndroidSdkVersions()
+        setUpAndroidConfiguration(this@multiPlatformLibrary)
+
+        sourceSets {
+            getByName("main").java.srcDirs("src/main/kotlin")
+        }
     }
 
     kotlinMultiPlatform {
         android()
-        ios()
+
+        // Block from https://github.com/cashapp/sqldelight/issues/2044#issuecomment-721299517.
+        val onPhone = System.getenv("SDK_NAME")?.startsWith("iphoneos") ?: false
+        if (onPhone) {
+            iosArm64("ios")
+        } else {
+            iosX64("ios")
+        }
 
         sourceSets {
             commonMain {
@@ -51,18 +62,6 @@ fun Project.multiPlatformLibrary() {
         }
     }
 
-}
-
-inline fun KotlinMultiplatformExtension.commonDependencies(
-    crossinline block: KotlinDependencyHandler.() -> Unit
-) {
-    sourceSets {
-        commonMain {
-            dependencies {
-                block()
-            }
-        }
-    }
 }
 
 fun Project.kotlinMultiPlatform(block: KotlinMultiplatformExtension.() -> Unit) {
@@ -103,4 +102,6 @@ fun SourceSets.androidTest(block: KotlinSourceSet.() -> Unit) {
 
 private val SourceSets.iosMain: KotlinSourceSet get() = getOrCreate("iosMain")
 
-private val SourceSets.iosArm64Main: KotlinSourceSet get() = getOrCreate("iosArm64Main")
+fun SourceSets.iosMain(block: KotlinSourceSet.() -> Unit) {
+    iosMain.apply(block)
+}

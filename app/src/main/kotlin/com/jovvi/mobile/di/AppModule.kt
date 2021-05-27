@@ -1,15 +1,11 @@
 package com.jovvi.mobile.di
 
-import android.app.Application
 import com.jovvi.mobile.common.activity.ActivityCallbacks
 import com.jovvi.mobile.common.activity.CompositeActivityCallbacksListener
-import org.kodein.di.DI
-import org.kodein.di.bind
-import org.kodein.di.instance
-import org.kodein.di.singleton
+import com.jovvi.mobile.common_db.DatabaseDriverFactory
+import org.koin.dsl.module
 
-fun appModule(app: Application) = DI.Module("AppModule") {
-    bind { instance(app) }
-
-    bind<ActivityCallbacks> { singleton { CompositeActivityCallbacksListener() } }
+val appModule = module {
+    single<ActivityCallbacks> { CompositeActivityCallbacksListener() }
+    single { DatabaseDriverFactory(get()).createDriver() }
 }
