@@ -8,4 +8,8 @@ class DefaultTopicDao(private val queries: TopicQueries) : TopicDao {
     override fun getTopicsByCategoryId(categoryId: Long): List<Topic> {
         return queries.getTopicsByCategoryId(categoryId).executeAsList()
     }
+
+    override fun getTopicById(id: Long): Topic? {
+        return queries.getTopicById(id).executeAsOneOrNull()
+    }
 }

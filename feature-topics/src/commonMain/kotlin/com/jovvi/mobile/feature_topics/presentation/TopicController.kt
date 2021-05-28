@@ -7,6 +7,8 @@ import com.arkivanov.mvikotlin.extensions.coroutines.events
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
 import com.arkivanov.mvikotlin.extensions.coroutines.states
 import com.jovvi.mobile.business_category.model.CategoryModel
+import com.jovvi.mobile.common_mpp.mvi.RetainedMviController
+import com.jovvi.mobile.feature_topics.presentation.models.TopicState
 import com.jovvi.mobile.feature_topics.view.TopicView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -14,22 +16,22 @@ import kotlinx.coroutines.FlowPreview
 class TopicController(
     private val storeFactory: TopicStoreFactory,
     private val labelListener: TopicLabelListener
-) {
+) : RetainedMviController {
 
-    private var innerStore: TopicStore? = null
+    private lateinit var store: TopicStore
+    private var initialState: TopicState? = null
+
+    override fun saveState() {
+        initialState = store.state
+    }
 
     fun setUp(categoryModel: CategoryModel) {
-        if (innerStore == null) {
-            innerStore = storeFactory(categoryModel)
-        }
+        store = storeFactory(initialState, categoryModel)
     }
 
     @FlowPreview
     @ExperimentalCoroutinesApi
     fun onViewCreated(topicView: TopicView, lifecycle: Lifecycle) {
-        requireNotNull(innerStore) { "Call setUp before onViewCreated" }
-        val store = innerStore!!
-
         bind(lifecycle, BinderLifecycleMode.CREATE_DESTROY) {
             topicView.events bindTo store
         }

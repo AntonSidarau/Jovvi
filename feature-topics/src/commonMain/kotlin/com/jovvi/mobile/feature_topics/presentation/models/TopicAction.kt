@@ -5,4 +5,6 @@ import com.jovvi.mobile.business_category.model.CategoryModel
 sealed class TopicAction {
 
     data class Start(val model: CategoryModel) : TopicAction()
+
+    object Idle : TopicAction()
 }

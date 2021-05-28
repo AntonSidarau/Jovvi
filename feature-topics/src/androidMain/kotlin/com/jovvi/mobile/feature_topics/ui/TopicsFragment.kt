@@ -8,6 +8,7 @@ import com.jovvi.mobile.business_category.model.CategoryModel
 import com.jovvi.mobile.common_di.Scopes
 import com.jovvi.mobile.common_di.closeOnDestroy
 import com.jovvi.mobile.common_di.createCustomScope
+import com.jovvi.mobile.common_mpp.mvi.saveStateOnDestroy
 import com.jovvi.mobile.common_ui.ext.getSerializableAs
 import com.jovvi.mobile.common_ui.ext.lazyMainThread
 import com.jovvi.mobile.common_ui.fragment.BaseFragment
@@ -44,7 +45,10 @@ class TopicsFragment : BaseFragment(R.layout.fragment_topics), AndroidScopeCompo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        controller.setUp(extractCategoryModel())
+        controller.apply {
+            setUp(extractCategoryModel())
+            saveStateOnDestroy(this@TopicsFragment)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,13 +56,13 @@ class TopicsFragment : BaseFragment(R.layout.fragment_topics), AndroidScopeCompo
         controller.onViewCreated(viewProxy, viewLifecycleOwner.lifecycle.asMviLifecycle())
     }
 
-    override fun onBackPressed() {
-        viewProxy.onExit()
-    }
-
     override fun onDestroyView() {
         viewProxy.onDestroyView()
         super.onDestroyView()
+    }
+
+    override fun onBackPressed() {
+        viewProxy.onExit()
     }
 
     private fun extractCategoryModel(): CategoryModel {

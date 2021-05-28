@@ -11,7 +11,7 @@ kotlinMultiPlatform {
                 mviKotlin()
                 addProject(":common-mpp")
                 addProject(":business-topics")
-                // addProject(":business-questions")
+                addProject(":business-question")
 
                 implementation(Dependencies.Di.Koin)
                 implementation(Dependencies.Coroutines.Core)

@@ -7,6 +7,8 @@ import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.SuspendExecutor
 import com.jovvi.mobile.business_category.repository.CategoryRepository
 import com.jovvi.mobile.feature_category.presentation.models.CategoryAction
+import com.jovvi.mobile.feature_category.presentation.models.CategoryAction.Idle
+import com.jovvi.mobile.feature_category.presentation.models.CategoryAction.Start
 import com.jovvi.mobile.feature_category.presentation.models.CategoryIntent
 import com.jovvi.mobile.feature_category.presentation.models.CategoryResult
 import com.jovvi.mobile.feature_category.presentation.models.CategoryState
@@ -14,19 +16,20 @@ import com.jovvi.mobile.feature_category.presentation.models.CategoryState
 class CategoryStoreFactory(
     private val storeFactory: StoreFactory,
     private val repository: CategoryRepository
-) : () -> CategoryStore {
+) : (CategoryState?) -> CategoryStore {
 
-    override fun invoke(): CategoryStore {
-        return DefaultCategoryStore(storeFactory, repository)
+    override fun invoke(initialState: CategoryState?): CategoryStore {
+        return DefaultCategoryStore(storeFactory, repository, initialState)
     }
 
     private class DefaultCategoryStore(
         private val storeFactory: StoreFactory,
-        private val repository: CategoryRepository
+        private val repository: CategoryRepository,
+        initialState: CategoryState?
     ) : CategoryStore, Store<CategoryIntent, CategoryState, CategoryIntent> by storeFactory.create(
         name = "CategoryStore",
-        initialState = CategoryState(),
-        bootstrapper = SimpleBootstrapper(CategoryAction.Start),
+        initialState = initialState ?: CategoryState(),
+        bootstrapper = SimpleBootstrapper(if (initialState == null) Start else Idle),
         executorFactory = { CategoryExecutor(repository) },
         reducer = CategoryReducer()
     )
@@ -37,9 +40,12 @@ class CategoryStoreFactory(
 
         override suspend fun executeAction(action: CategoryAction, getState: () -> CategoryState) {
             when (action) {
-                is CategoryAction.Start -> {
+                is Start -> {
                     val categories = repository.getCategories()
                     dispatch(CategoryResult.CategoriesLoaded(categories))
+                }
+                is Idle -> {
+                    // do nothing
                 }
             }
         }

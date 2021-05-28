@@ -6,6 +6,7 @@ import com.arkivanov.mvikotlin.core.lifecycle.asMviLifecycle
 import com.jovvi.mobile.common_di.Scopes
 import com.jovvi.mobile.common_di.closeOnDestroy
 import com.jovvi.mobile.common_di.createCustomScope
+import com.jovvi.mobile.common_mpp.mvi.saveStateOnDestroy
 import com.jovvi.mobile.common_ui.ext.lazyMainThread
 import com.jovvi.mobile.common_ui.fragment.BaseFragment
 import com.jovvi.mobile.feature_category.R
@@ -31,7 +32,10 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category), AndroidScopeC
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        controller.setUp()
+        controller.apply {
+            setUp()
+            saveStateOnDestroy(this@CategoryFragment)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

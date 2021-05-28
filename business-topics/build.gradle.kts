@@ -12,6 +12,8 @@ kotlinMultiPlatform {
                 addProject(":common-db")
                 addProject(":common-mpp")
 
+                addProject(":business-category")
+
                 implementation(Dependencies.Di.Koin)
                 implementation(Dependencies.Coroutines.Core)
             }

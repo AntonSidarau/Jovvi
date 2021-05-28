@@ -8,6 +8,7 @@ import com.arkivanov.mvikotlin.extensions.coroutines.SuspendExecutor
 import com.jovvi.mobile.business_category.model.CategoryModel
 import com.jovvi.mobile.business_topics.repository.TopicRepository
 import com.jovvi.mobile.feature_topics.presentation.models.TopicAction
+import com.jovvi.mobile.feature_topics.presentation.models.TopicAction.Idle
 import com.jovvi.mobile.feature_topics.presentation.models.TopicAction.Start
 import com.jovvi.mobile.feature_topics.presentation.models.TopicIntent
 import com.jovvi.mobile.feature_topics.presentation.models.TopicResult
@@ -16,20 +17,21 @@ import com.jovvi.mobile.feature_topics.presentation.models.TopicState
 class TopicStoreFactory(
     private val storeFactory: StoreFactory,
     private val repository: TopicRepository
-) : (CategoryModel) -> TopicStore {
+) : (TopicState?, CategoryModel) -> TopicStore {
 
-    override fun invoke(model: CategoryModel): TopicStore {
-        return DefaultTopicStore(storeFactory, repository, model)
+    override fun invoke(initialState: TopicState?, model: CategoryModel): TopicStore {
+        return DefaultTopicStore(storeFactory, repository, initialState, model)
     }
 
     private class DefaultTopicStore(
         private val storeFactory: StoreFactory,
         private val repository: TopicRepository,
+        initialState: TopicState?,
         categoryModel: CategoryModel
     ) : TopicStore, Store<TopicIntent, TopicState, TopicIntent> by storeFactory.create(
         name = "TopicStore",
-        initialState = TopicState(categoryModel.title),
-        bootstrapper = SimpleBootstrapper(Start(categoryModel)),
+        initialState = initialState ?: TopicState(categoryModel.title),
+        bootstrapper = SimpleBootstrapper(if (initialState == null) Start(categoryModel) else Idle),
         executorFactory = { TopicExecutor(repository) },
         reducer = TopicReducer()
     )
@@ -43,6 +45,9 @@ class TopicStoreFactory(
                 is Start -> {
                     val topics = repository.getTopicsByCategoryId(action.model.id)
                     dispatch(TopicResult.TopicsLoaded(topics))
+                }
+                is Idle -> {
+                    // do nothing
                 }
             }
         }

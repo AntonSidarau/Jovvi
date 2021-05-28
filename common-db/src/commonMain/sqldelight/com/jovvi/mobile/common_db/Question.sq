@@ -2,6 +2,7 @@ CREATE TABLE Question(
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
     topicId INTEGER NOT NULL,
+    favourite INTEGER AS Boolean DEFAULT 0,
     FOREIGN KEY (topicId) REFERENCES Category (id)
                 ON DELETE CASCADE ON UPDATE NO ACTION
 );

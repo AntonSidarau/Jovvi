@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
+import com.jovvi.mobile.business_category.model.QuestionModel
 import com.jovvi.mobile.common_ui.ext.dpToPx
 import com.jovvi.mobile.common_ui.view_holder.InflateViewHolder
 import com.jovvi.mobile.feature_question.R
@@ -19,7 +20,7 @@ internal class QuestionDelegate() : AdapterDelegate<List<Any>>() {
     }
 
     override fun isForViewType(items: List<Any>, position: Int): Boolean {
-        return items[position] is Question
+        return items[position] is QuestionModel
     }
 
     override fun onBindViewHolder(
@@ -29,7 +30,7 @@ internal class QuestionDelegate() : AdapterDelegate<List<Any>>() {
         payloads: MutableList<Any>
     ) {
         val vh = holder as ViewHolder
-        val question = items[position] as Question
+        val question = items[position] as QuestionModel
 
         vh.bind(question)
     }
@@ -58,15 +59,10 @@ internal class QuestionDelegate() : AdapterDelegate<List<Any>>() {
             viewCard.elevation = viewCard.dpToPx(6F)
         }
 
-        fun bind(question: Question) {
-            tvQuestion.text = question.name
-            gradientDrawable.colors = intArrayOf(question.startColor, question.endColor)
+        fun bind(question: QuestionModel) {
+            tvQuestion.text = question.text
+            ivFavourite.isSelected = question.isFavourite
+            gradientDrawable.colors = intArrayOf(question.colorStart.argb, question.colorEnd.argb)
         }
     }
 }
-
-data class Question(
-    val name: String,
-    val startColor: Int,
-    val endColor: Int
-)

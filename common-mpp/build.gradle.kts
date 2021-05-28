@@ -7,6 +7,7 @@ multiPlatformLibrary()
 
 androidLibrary {
     dependencies {
+        androidX()
         implementation(Dependencies.AndroidX.Annotation)
     }
 }

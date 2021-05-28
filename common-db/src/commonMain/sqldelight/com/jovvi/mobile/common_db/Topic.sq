@@ -30,3 +30,6 @@ INSERT INTO Topic (name, categoryId) VALUES
 
 getTopicsByCategoryId:
 SELECT * FROM Topic WHERE categoryId = ?;
+
+getTopicById:
+SELECT * FROM Topic WHERE id = ?;

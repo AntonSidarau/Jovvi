@@ -11,6 +11,7 @@ include(
     ":common-ui",
 
     ":business-category",
+    ":business-question",
     ":business-topics",
 
     ":feature-about-us",
