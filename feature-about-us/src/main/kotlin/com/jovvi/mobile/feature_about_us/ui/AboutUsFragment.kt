@@ -7,11 +7,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.MaterialToolbar
 import com.jovvi.mobile.common_di.Scopes
 import com.jovvi.mobile.common_navigation.Router
-import com.jovvi.mobile.common_ui.ext.addSystemBottomMargins
-import com.jovvi.mobile.common_ui.ext.addSystemTopMargins
 import com.jovvi.mobile.common_ui.ext.lazyMainThread
 import com.jovvi.mobile.common_ui.fragment.BaseFragment
 import com.jovvi.mobile.feature_about_us.R
+import dev.chrisbanes.insetter.applyInsetter
 import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.inject
 import org.koin.android.scope.AndroidScopeComponent
@@ -48,8 +47,8 @@ class AboutUsFragment : BaseFragment(R.layout.fragment_about_us), AndroidScopeCo
         val toolbar: MaterialToolbar = view.findViewById(R.id.toolbar)
         val btnShareTwitter: Button = view.findViewById(R.id.btn_share_twitter)
 
-        toolbar.addSystemTopMargins()
-        btnShareTwitter.addSystemBottomMargins()
+        toolbar.applyInsetter { type(statusBars = true) { margin() } }
+        btnShareTwitter.applyInsetter { type(navigationBars = true) { margin() } }
 
         toolbar.setNavigationOnClickListener { router.exit() }
     }

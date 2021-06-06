@@ -13,6 +13,8 @@ import com.jovvi.mobile.feature_category.R
 import com.jovvi.mobile.feature_category.di.CategoryScopes
 import com.jovvi.mobile.feature_category.presentation.CategoryController
 import com.jovvi.mobile.feature_category.view.CategoryView
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import org.koin.android.ext.android.inject
 import org.koin.android.scope.AndroidScopeComponent
 import org.koin.core.scope.Scope
@@ -38,6 +40,8 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category), AndroidScopeC
         }
     }
 
+    @FlowPreview
+    @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewProxy = DefaultCategoryView(view)
         controller.onViewCreated(viewProxy, viewLifecycleOwner.lifecycle.asMviLifecycle())

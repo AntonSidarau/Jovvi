@@ -11,8 +11,6 @@ import com.arkivanov.mvikotlin.core.view.ViewRenderer
 import com.jovvi.mobile.business_category.model.CategoryModel
 import com.jovvi.mobile.business_topics.model.TopicModel
 import com.jovvi.mobile.common_ui.adapter.DefaultDelegatedAdapter
-import com.jovvi.mobile.common_ui.ext.addSystemBottomPadding
-import com.jovvi.mobile.common_ui.ext.addSystemTopPadding
 import com.jovvi.mobile.common_ui.widget.CategoryView
 import com.jovvi.mobile.feature_topics.R
 import com.jovvi.mobile.feature_topics.presentation.models.TopicIntent
@@ -21,6 +19,7 @@ import com.jovvi.mobile.feature_topics.presentation.models.TopicIntent.OpenQuest
 import com.jovvi.mobile.feature_topics.presentation.models.TopicState
 import com.jovvi.mobile.feature_topics.ui.delegate.TopicsDelegate
 import com.jovvi.mobile.feature_topics.view.TopicView
+import dev.chrisbanes.insetter.applyInsetter
 
 class DefaultTopicView(
     private val root: View,
@@ -53,8 +52,8 @@ class DefaultTopicView(
         val tvSubtitle: TextView = view.findViewById(R.id.tv_subtitle)
         val categoryView: CategoryView = view.findViewById(R.id.view_category)
 
-        recyclerTopics.addSystemBottomPadding()
-        categoryView.addSystemTopPadding()
+        recyclerTopics.applyInsetter { type(navigationBars = true) { padding() } }
+        categoryView.applyInsetter { type(statusBars = true) { padding() } }
 
         recyclerTopics.adapter = adapter
         recyclerTopics.layoutManager = GridLayoutManager(view.context, 2)

@@ -9,8 +9,8 @@ class DefaultQuestionLabelListener(
     private val router: Router
 ) : QuestionLabelListener {
 
-    override fun render(label: QuestionLabel) {
-        return when (label) {
+    override fun render(model: QuestionLabel) {
+        return when (model) {
             is Exit -> router.exit()
         }
     }

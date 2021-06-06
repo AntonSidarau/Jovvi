@@ -7,8 +7,8 @@ import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 const val MID_SDK = 21
-const val TARGET_SDK = 30
-const val COMPILE_SDK = 30
+const val TARGET_SDK = 31
+const val COMPILE_SDK = 31
 
 fun Project.androidLibrary() {
     plugins.apply("com.android.library")
@@ -38,8 +38,8 @@ fun BaseExtension.setUpAndroidSdkVersions() {
     compileSdkVersion(COMPILE_SDK)
 
     defaultConfig {
-        targetSdkVersion(TARGET_SDK)
-        minSdkVersion(MID_SDK)
+        targetSdk = TARGET_SDK
+        minSdk = MID_SDK
     }
 }
 

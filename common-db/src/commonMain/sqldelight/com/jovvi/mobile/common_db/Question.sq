@@ -37,3 +37,6 @@ SELECT * FROM Question WHERE topicId = ?;
 
 getQuestionById:
 SELECT * FROM Question WHERE id = ?;
+
+updateQuestionFavouriteStatus:
+UPDATE Question SET favourite = ? WHERE id = ?;

@@ -2,7 +2,7 @@ package com.jovvi.mobile.di
 
 import com.jovvi.mobile.R
 import com.jovvi.mobile.common_di.Scopes
-import com.jovvi.mobile.common_navigation.DefaultNavigator
+import com.jovvi.mobile.common_navigation.AppNavigator
 import com.jovvi.mobile.common_navigation.Navigator
 import com.jovvi.mobile.common_navigation.Router
 import com.jovvi.mobile.feature_category.navigation.CategoryNavigationProvider
@@ -18,7 +18,7 @@ val navigationModule = module {
     scope(named(Scopes.ACTIVITY)) {
         factory<Navigator> {
             val activityHolder: ActivityHolder = get()
-            DefaultNavigator(activityHolder.activity, R.id.root_container)
+            AppNavigator(activityHolder.activity, R.id.root_container)
         }
 
         scoped { Router() }

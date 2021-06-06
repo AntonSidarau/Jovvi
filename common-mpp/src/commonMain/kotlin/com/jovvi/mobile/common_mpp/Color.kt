@@ -5,7 +5,7 @@ data class Color(
     val green: Int,
     val blue: Int,
     val alpha: Int
-) {
+) : Serializable {
     val rgba: Int = alpha or
             blue.shl(8) or
             green.shl(16) or

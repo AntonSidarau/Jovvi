@@ -25,6 +25,7 @@ fun DependencyHandler.androidX() {
     add(IMPLEMENTATION, Dependencies.AndroidX.LifecycleCommon)
     add(IMPLEMENTATION, Dependencies.AndroidX.Fragment)
     add(IMPLEMENTATION, Dependencies.AndroidX.FragmentKtx)
+    add(IMPLEMENTATION, Dependencies.AndroidX.Insetter)
 }
 
 fun DependencyHandler.androidUi() {

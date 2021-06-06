@@ -37,7 +37,7 @@
     <style name="Widget.Jovvi.Chip" parent="Widget.MaterialComponents.Chip.Action" />
 
     <!-- Dialog styles -->
-    <style name="ThemeOverlay.Jovvi.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.Light.BottomSheetDialog" />
+    <style name="ThemeOverlay.Jovvi.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog" />
 
     <style name="ThemeOverlay.Jovvi.Dialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert" />
 

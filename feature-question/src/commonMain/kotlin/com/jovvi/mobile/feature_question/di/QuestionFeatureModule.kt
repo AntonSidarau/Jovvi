@@ -10,7 +10,7 @@ val questionFeatureModule = module {
     scope(named(QuestionScopes.FEATURE)) {
         scoped {
             QuestionController(
-                QuestionStoreFactory(DefaultStoreFactory, get()),
+                QuestionStoreFactory(DefaultStoreFactory, get(), get()),
                 get()
             )
         }

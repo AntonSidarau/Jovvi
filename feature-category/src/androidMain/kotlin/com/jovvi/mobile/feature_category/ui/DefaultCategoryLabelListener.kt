@@ -11,12 +11,12 @@ class DefaultCategoryLabelListener(
     private val navigationProvider: CategoryNavigationProvider
 ) : CategoryLabelListener {
 
-    override fun render(label: CategoryIntent) {
-        when (label) {
+    override fun render(model: CategoryIntent) {
+        when (model) {
             is OpenHotQuestion -> router.forwardTo(navigationProvider.hotQuestionScreen())
             is OpenFavouriteQuestion -> router.forwardTo(navigationProvider.favoriteQuestionsScreen())
             is OpenMore -> router.forwardTo(navigationProvider.aboutUsScreen())
-            is OpenTopics -> router.forwardTo(navigationProvider.topicsScreen(label.category))
+            is OpenTopics -> router.forwardTo(navigationProvider.topicsScreen(model.category))
             is Exit -> router.exit()
         }
     }

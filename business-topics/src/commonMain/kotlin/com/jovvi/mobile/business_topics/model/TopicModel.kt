@@ -10,6 +10,8 @@ data class TopicModel(
     val colorEnd: Color
 ) : Serializable {
 
+    val isFavouriteTopic: Boolean get() = id == -1L
+
     companion object {
 
         fun favouriteQuestions(localizedName: String): TopicModel {

@@ -17,6 +17,8 @@ import com.jovvi.mobile.feature_question.R
 import com.jovvi.mobile.feature_question.di.QuestionScopes
 import com.jovvi.mobile.feature_question.presentation.QuestionController
 import com.jovvi.mobile.feature_question.view.QuestionView
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import org.koin.android.ext.android.inject
 import org.koin.android.scope.AndroidScopeComponent
 import org.koin.core.scope.Scope
@@ -52,6 +54,8 @@ class QuestionFragment : BaseFragment(R.layout.fragment_question), AndroidScopeC
         }
     }
 
+    @FlowPreview
+    @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewProxy = DefaultQuestionView(view, extractTopic())
         controller.onViewCreated(viewProxy, viewLifecycleOwner.lifecycle.asMviLifecycle())

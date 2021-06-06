@@ -17,9 +17,12 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.jovvi.mobile.common_di.Scopes
 import com.jovvi.mobile.common_mpp.Color
 import com.jovvi.mobile.common_navigation.Router
-import com.jovvi.mobile.common_ui.ext.*
+import com.jovvi.mobile.common_ui.ext.dpToPx
+import com.jovvi.mobile.common_ui.ext.getColorInt
+import com.jovvi.mobile.common_ui.ext.lazyMainThread
 import com.jovvi.mobile.common_ui.fragment.BaseFragment
 import com.jovvi.mobile.feature_hot_question.R
+import dev.chrisbanes.insetter.applyInsetter
 import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.inject
 import org.koin.android.scope.AndroidScopeComponent
@@ -89,8 +92,8 @@ class HotQuestionFragment : BaseFragment(R.layout.fragment_host_question), Andro
         val btnShareTwitter: Button = view.findViewById(R.id.btn_share_twitter)
         val btnShareInstagram: Button = view.findViewById(R.id.btn_share_instagram)
 
-        toolbar.addSystemTopMargins()
-        btnShareTwitter.addSystemBottomMargins()
+        toolbar.applyInsetter { type(statusBars = true) { margin() } }
+        btnShareTwitter.applyInsetter { type(navigationBars = true) { margin() } }
 
         ivCopy.setOnClickListener {
             Toast.makeText(requireContext(), "Copied(no)", Toast.LENGTH_SHORT).show()

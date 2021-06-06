@@ -1,23 +1,15 @@
 package com.jovvi.mobile.common_navigation
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.jovvi.mobile.common_navigation.command.Command
 import com.jovvi.mobile.common_navigation.command.Command.*
 import java.util.*
 
-class DefaultNavigator(
-    private val activity: AppCompatActivity,
+open class DefaultNavigator(
     private val fragmentManager: FragmentManager,
     private val containerId: Int
 ) : Navigator {
-
-    constructor(activity: AppCompatActivity, containerId: Int) : this(
-        activity,
-        activity.supportFragmentManager,
-        containerId
-    )
 
     private lateinit var localStackCopy: LinkedList<String>
 
@@ -33,6 +25,10 @@ class DefaultNavigator(
         copyStackToLocal()
 
         commands.forEach { applyCommand(it) }
+    }
+
+    open protected fun activityBack() {
+        // do nothing
     }
 
     private fun copyStackToLocal() {
@@ -110,10 +106,6 @@ class DefaultNavigator(
     private fun backToRoot() {
         fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         localStackCopy.clear()
-    }
-
-    private fun activityBack() {
-        activity.finish()
     }
 
     private fun FragmentManager.performBackStackTransaction(fragment: Fragment, screen: Screen) {

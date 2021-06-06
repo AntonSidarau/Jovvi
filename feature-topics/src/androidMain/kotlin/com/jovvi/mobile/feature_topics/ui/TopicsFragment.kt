@@ -16,6 +16,8 @@ import com.jovvi.mobile.feature_topics.R
 import com.jovvi.mobile.feature_topics.di.TopicScopes
 import com.jovvi.mobile.feature_topics.presentation.TopicController
 import com.jovvi.mobile.feature_topics.view.TopicView
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import org.koin.android.ext.android.inject
 import org.koin.android.scope.AndroidScopeComponent
 import org.koin.core.scope.Scope
@@ -51,6 +53,8 @@ class TopicsFragment : BaseFragment(R.layout.fragment_topics), AndroidScopeCompo
         }
     }
 
+    @FlowPreview
+    @ExperimentalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewProxy = DefaultTopicView(view, extractCategoryModel())
         controller.onViewCreated(viewProxy, viewLifecycleOwner.lifecycle.asMviLifecycle())

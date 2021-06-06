@@ -5,17 +5,18 @@ import com.jovvi.mobile.business_category.repository.CategoryRepository
 import com.jovvi.mobile.business_topics.model.TopicModel
 import com.jovvi.mobile.common_db.dao.TopicDao
 import com.jovvi.mobile.commondb.Topic
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 
 class TopicRepository(
+    private val dispatcher: CoroutineDispatcher,
     private val topicDao: TopicDao,
     private val repository: CategoryRepository
 ) {
 
     suspend fun getTopicsByCategoryId(categoryId: Long): List<TopicModel> {
-        return withContext(Dispatchers.Default) {
+        return withContext(dispatcher) {
             val categoryJob = async { repository.getCategoryById(categoryId) }
             val topicsJob = async { topicDao.getTopicsByCategoryId(categoryId) }
 
@@ -27,7 +28,7 @@ class TopicRepository(
     }
 
     suspend fun getTopicById(id: Long): TopicModel? {
-        return withContext(Dispatchers.Default) {
+        return withContext(dispatcher) {
             val topic = topicDao.getTopicById(id)
 
             if (topic != null) {

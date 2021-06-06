@@ -1,8 +1,8 @@
 package com.jovvi.mobile.root
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import com.jovvi.mobile.R
 import com.jovvi.mobile.common_di.Scopes
 import com.jovvi.mobile.common_di.closeOnDestroy
@@ -51,7 +51,6 @@ class RootActivity : AppCompatActivity(), AndroidScopeComponent {
     }
 
     private fun initUi() {
-        window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+        WindowCompat.setDecorFitsSystemWindows(window, false)
     }
 }

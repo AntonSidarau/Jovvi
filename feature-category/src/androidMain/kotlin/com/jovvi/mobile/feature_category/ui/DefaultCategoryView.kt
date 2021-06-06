@@ -10,14 +10,13 @@ import com.arkivanov.mvikotlin.core.view.BaseMviView
 import com.arkivanov.mvikotlin.core.view.ViewRenderer
 import com.jovvi.mobile.business_category.model.CategoryModel
 import com.jovvi.mobile.common_ui.adapter.DefaultDelegatedAdapter
-import com.jovvi.mobile.common_ui.ext.addSystemBottomPadding
-import com.jovvi.mobile.common_ui.ext.addSystemTopMargins
 import com.jovvi.mobile.feature_category.R
 import com.jovvi.mobile.feature_category.presentation.models.CategoryIntent
 import com.jovvi.mobile.feature_category.presentation.models.CategoryIntent.*
 import com.jovvi.mobile.feature_category.presentation.models.CategoryState
 import com.jovvi.mobile.feature_category.ui.delegate.CategoryDelegate
 import com.jovvi.mobile.feature_category.view.CategoryView
+import dev.chrisbanes.insetter.applyInsetter
 
 internal class DefaultCategoryView(
     private val root: View
@@ -47,8 +46,8 @@ internal class DefaultCategoryView(
         val tvTitle: TextView = view.findViewById(R.id.tv_title)
         val recyclerCategory: RecyclerView = view.findViewById(R.id.rv_category)
 
-        tvTitle.addSystemTopMargins()
-        recyclerCategory.addSystemBottomPadding()
+        tvTitle.applyInsetter { type(statusBars = true) { margin() } }
+        recyclerCategory.applyInsetter { type(navigationBars = true) { padding() } }
         recyclerCategory.adapter = adapter
     }
 

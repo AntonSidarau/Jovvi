@@ -11,11 +11,11 @@ class DefaultTopicLabelListener(
     private val navigationProvider: TopicsNavigationProvider
 ) : TopicLabelListener {
 
-    override fun render(label: TopicIntent) {
-        when (label) {
+    override fun render(model: TopicIntent) {
+        when (model) {
             is Exit -> router.exit()
             is TopicIntent.OpenQuestion -> router.forwardTo(
-                navigationProvider.questionScreen(label.topic)
+                navigationProvider.questionScreen(model.topic)
             )
         }
     }

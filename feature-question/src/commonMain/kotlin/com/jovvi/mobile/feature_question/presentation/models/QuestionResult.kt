@@ -5,4 +5,6 @@ import com.jovvi.mobile.business_category.model.QuestionModel
 sealed class QuestionResult {
 
     data class QuestionsLoaded(val questions: List<QuestionModel>) : QuestionResult()
+
+    data class QuestionUpdated(val question: QuestionModel) : QuestionResult()
 }

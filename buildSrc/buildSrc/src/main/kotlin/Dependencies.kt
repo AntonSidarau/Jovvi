@@ -53,12 +53,21 @@ object Dependencies {
         object ViewPager : dep(
             name = "androidx.viewpager2:viewpager2", version = Versions.viewPager
         )
+
+        object Insetter : dep(
+            name = "dev.chrisbanes.insetter:insetter", version = Versions.insetter
+        )
     }
 
     object Coroutines {
 
         object Core : dep(
             name = "org.jetbrains.kotlinx:kotlinx-coroutines-core",
+            version = Versions.coroutines
+        )
+
+        object Android : dep(
+            name = "org.jetbrains.kotlinx:kotlinx-coroutines-android",
             version = Versions.coroutines
         )
     }
@@ -132,6 +141,11 @@ object Dependencies {
         object AdapterDelegates : dep(
             name = "com.hannesdorfmann:adapterdelegates4-kotlin-dsl-layoutcontainer",
             version = Versions.adapterDelegates
+        )
+
+        object Lottie : dep(
+            name = "com.airbnb.android:lottie",
+            version = Versions.lottie
         )
     }
 

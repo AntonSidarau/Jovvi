@@ -31,4 +31,5 @@ androidDependencies {
     implementation(Dependencies.AndroidX.ViewPager)
 
     implementation(Dependencies.Ui.AdapterDelegates)
+    implementation(Dependencies.Ui.Lottie)
 }
